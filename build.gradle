@@ -7,8 +7,12 @@ apply plugin: "eclipse"
 group "blackboard.plugin"
 version "1.0-SNAPSHOT"
 
+task wrapper(type: Wrapper) {
+    gradleVersion = "1.6"
+}
+
 project.ext {
-  learnVersion = "9.1.110082.0"
+  learnVersion = "9.1 SP10"
   springVersion = "3.1.1.RELEASE"
   hibernateVersion = "4.1.10.Final"
 }
@@ -24,9 +28,8 @@ configurations {
   buildUtils
 }
 
-// define the project's dependencies
 dependencies {
-  // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR.
+  // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR
   providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
@@ -47,7 +50,8 @@ dependencies {
           "org.springframework:spring-tx:$ext.springVersion"
 
   compile( "org.hibernate:hibernate-core:$ext.hibernateVersion" ) { transitive = true }
-  compile "org.hibernate:hibernate-entitymanager:$ext.hibernateVersion"
+  compile "com.google.guava:guava:14.0.1",
+          "org.hibernate:hibernate-entitymanager:$ext.hibernateVersion"
 
   runtime "org.javassist:javassist:3.17.1-GA",
           "dom4j:dom4j:1.6.1"
@@ -60,8 +64,4 @@ dependencies {
 task deployB2( dependsOn: "war" ) << {
       ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
       ant.b2deploy( localfilepath: project.war.archivePath, host: "devday.blackboard.com", courseorgavailable: 'true', clean: 'true' )
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = "1.6"
 }
