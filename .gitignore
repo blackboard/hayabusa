@@ -1,0 +1,12 @@
+# eclipse
+.classpath
+.project
+.settings
+_eclipse_/
+
+# intellij
+.idea
+*.iml
+
+# osx
+.DS_STORE
