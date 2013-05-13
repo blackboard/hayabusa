@@ -2,23 +2,34 @@ apply plugin: "java"
 apply plugin: "war"
 apply plugin: "maven"
 apply plugin: "eclipse"
+apply plugin: "versions"
 
 // define the version for the project when publishing to maven
 group "blackboard.plugin"
 version "1.0-SNAPSHOT"
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    // Add the versions plugin - use dependencyUpdates to detect updates to project dependencies
+    classpath "com.github.ben-manes:gradle-versions-plugin:0.3"
+  }
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = "1.6"
 }
 
 project.ext {
-  learnVersion = "9.1 SP10"
-  springVersion = "3.1.1.RELEASE"
-  hibernateVersion = "4.1.10.Final"
+  learnVersion = "9.1.100401.0"
+  springVersion = "3.2.2.RELEASE"
+  hibernateVersion = "4.2.1.Final"
 }
 
 repositories {
-  mavenCentral()
   maven {
     url "https://maven.blackboard.com/content/repositories/releases/"
   }
@@ -34,7 +45,7 @@ dependencies {
   providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
 
-  compile( "blackboard.platform:bb-spring-webapi:$ext.learnVersion" ) { transitive = false }
+  compile( "blackboard.platform:bb-spring-webapi:10.1" ) { transitive = false }
 
   compile "org.springframework:spring-aop:$ext.springVersion",
           "org.springframework:spring-asm:$ext.springVersion",

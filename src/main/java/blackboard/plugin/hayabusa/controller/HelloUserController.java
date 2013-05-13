@@ -1,4 +1,4 @@
-package blackboard.plugin.hayabusa.spring.web;
+package blackboard.plugin.hayabusa.controller;
 
 import blackboard.data.user.User;
 import blackboard.platform.spring.beans.annotations.ContextValue;

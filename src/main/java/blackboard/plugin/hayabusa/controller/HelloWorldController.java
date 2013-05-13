@@ -1,4 +1,4 @@
-package blackboard.plugin.hayabusa.spring.web;
+package blackboard.plugin.hayabusa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

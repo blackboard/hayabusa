@@ -1,4 +1,4 @@
-package blackboard.plugin.hayabusa.spring.web;
+package blackboard.plugin.hayabusa.controller;
 
 import java.util.LinkedList;
 import java.util.List;
