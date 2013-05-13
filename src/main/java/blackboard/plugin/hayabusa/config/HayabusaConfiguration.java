@@ -15,6 +15,7 @@
 
 package blackboard.plugin.hayabusa.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -27,7 +28,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @EnableWebMvc
+@ComponentScan( basePackages = "blackboard.plugin.hayabusa.controller" )
 public class HayabusaConfiguration extends WebMvcConfigurerAdapter
 {
+
+  /*
+   * TODO wire the provider list:
+   * http://stackoverflow.com/questions/14892757/inject-a-list-of-beans-using-spring-configuration-annotation
+   */
 
 }
