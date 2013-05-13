@@ -16,6 +16,8 @@
 package blackboard.plugin.hayabusa.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * Spring configuration for the Hayabua project.
@@ -24,7 +26,8 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-public class HayabusaConfiguration
+@EnableWebMvc
+public class HayabusaConfiguration extends WebMvcConfigurerAdapter
 {
 
 }

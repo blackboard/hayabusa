@@ -13,25 +13,38 @@
  * DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
  */
 
-package blackboard.plugin.hayabusa.controller;
+package blackboard.plugin.hayabusa;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-public class ProviderRestControllerTest
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( loader = AnnotationConfigContextLoader.class )
+public class ExampleSpringTest
 {
-  private ProviderRestController _controller;
-
-  @Before
-  public void setup()
+  @Configuration
+  static class ContextConfiguration
   {
-    _controller = new ProviderRestController();
+    @Bean
+    public ExampleSpringTest someBean()
+    {
+      return new ExampleSpringTest();
+    }
   }
 
+  @Autowired
+  ExampleSpringTest _someObject;
+
   @Test
-  public void getProviderData_Succeeds()
+  public void someMethod_Succeeds()
   {
-    _controller.getProviderData();
+    _someObject.toString();
   }
 
 }

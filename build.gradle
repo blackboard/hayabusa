@@ -52,6 +52,7 @@ dependencies {
           "org.springframework:spring-context:$ext.springVersion",
           "org.springframework:spring-core:$ext.springVersion",
           "org.springframework:spring-expression:$ext.springVersion",
+          "org.springframework:spring-test:$ext.springVersion",
           "org.springframework:spring-web:$ext.springVersion",
           "org.springframework:spring-webmvc:$ext.springVersion",
           "org.springframework:spring-context-support:$ext.springVersion"

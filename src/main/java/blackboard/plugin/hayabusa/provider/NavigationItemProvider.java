@@ -15,9 +15,19 @@
 
 package blackboard.plugin.hayabusa.provider;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import blackboard.data.navigation.NavigationItem;
+import blackboard.persist.PersistenceException;
+import blackboard.persist.PersistenceRuntimeException;
+import blackboard.persist.navigation.NavigationItemDbLoader;
 import blackboard.plugin.hayabusa.command.Command;
+import blackboard.plugin.hayabusa.command.SimpleCommand;
 
 import java.util.*;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 
 /**
  * A {@link Provider} for navigation item links.
@@ -27,11 +37,28 @@ import java.util.*;
  */
 public class NavigationItemProvider implements Provider
 {
+  private static final Function<NavigationItem, Command> TRANSFORM = new Function<NavigationItem, Command>()
+    {
+      public Command apply( NavigationItem ni )
+      {
+        checkNotNull( ni );
+        return new SimpleCommand( ni.getDescription(), ni.getHref() );
+      }
+    };
 
   @Override
-  public List<Command> getCommands()
+  public Iterable<Command> getCommands()
   {
-    return Collections.emptyList();
+    try
+    {
+      NavigationItemDbLoader loader = NavigationItemDbLoader.Default.getInstance();
+      List<NavigationItem> items = loader.loadByFamily( "admin_main" );
+      return Iterables.transform( items, TRANSFORM );
+    }
+    catch ( PersistenceException e )
+    {
+      throw new PersistenceRuntimeException( e );
+    }
   }
 
 }

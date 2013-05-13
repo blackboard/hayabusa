@@ -27,7 +27,6 @@ import com.google.common.collect.ImmutableList;
  */
 public class ProviderManager
 {
-
   public List<Provider> getProviders()
   {
     return ImmutableList.<Provider> of( new NavigationItemProvider() ).asList();

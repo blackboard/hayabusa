@@ -11,7 +11,7 @@
 
     <version value="1.0" />
     <requires>
-      <bbversion value="9.1.110000.0" />
+      <bbversion value="9.1.100000.0" />
     </requires>
 
     <vendor>
@@ -30,7 +30,7 @@
       <permission type="attribute" name="user.*" actions="get,set" />
       <permission type="java.util.PropertyPermission" name="*" actions="read,write" />
       <permission type="socket" name="*" actions="connect" />
-      
+
       <!-- We need these permissions to allow Spring to auto-discover and wire beans together and Hibernate to interact with objects. -->
       <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
       <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />

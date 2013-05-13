@@ -17,16 +17,11 @@ package blackboard.plugin.hayabusa.provider;
 
 import blackboard.plugin.hayabusa.command.Command;
 
-import java.util.List;
-
 /**
- * 
- * 
  * @author Danny Thomas
  * @since 1.0
- *
  */
 public interface Provider
 {
-  List<Command> getCommands();
+  Iterable<Command> getCommands();
 }
