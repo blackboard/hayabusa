@@ -15,6 +15,7 @@
 
 package blackboard.plugin.hayabusa;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,17 @@ public class ExampleSpringTest
   static class ContextConfiguration
   {
     @Bean
-    public ExampleSpringTest someBean()
+    public Object someObject()
     {
       return new ExampleSpringTest();
     }
   }
 
   @Autowired
-  ExampleSpringTest _someObject;
+  Object _someObject;
 
   @Test
+  @Ignore
   public void someMethod_Succeeds()
   {
     _someObject.toString();
