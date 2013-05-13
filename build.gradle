@@ -9,67 +9,57 @@ group "blackboard.plugin"
 version "1.0-SNAPSHOT"
 
 buildscript {
-  repositories {
-    mavenCentral()
-  }
+  repositories { mavenCentral() }
 
-  dependencies {
-    // Add the versions plugin - use dependencyUpdates to detect updates to project dependencies
-    classpath "com.github.ben-manes:gradle-versions-plugin:0.3"
-  }
+  dependencies { // Add the versions plugin - use dependencyUpdates to detect updates to project dependencies
+    classpath "com.github.ben-manes:gradle-versions-plugin:0.3" }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = "1.6"
-}
+task wrapper(type: Wrapper) { gradleVersion = "1.6" }
 
 project.ext {
   learnVersion = "9.1.100401.0"
   springVersion = "3.2.2.RELEASE"
-  hibernateVersion = "4.2.1.Final"
+
+  libraries = [
+    spring: [
+      "org.springframework:spring-beans:$springVersion",
+      "org.springframework:spring-context:$springVersion",
+      "org.springframework:spring-core:$springVersion",
+      "org.springframework:spring-expression:$springVersion",
+      "org.springframework:spring-web:$springVersion",
+      "org.springframework:spring-webmvc:$springVersion",
+      "org.springframework:spring-context-support:$springVersion"
+    ],
+    logging: [
+      "ch.qos.logback:logback-classic:1.0.13",
+      "org.slf4j:log4j-over-slf4j:1.7.5"
+    ]
+  ]
 }
 
 repositories {
   mavenCentral()
-  maven {
-    url "https://maven.blackboard.com/content/repositories/releases/"
-  }
+  maven { url "https://maven.blackboard.com/content/repositories/releases/" }
 }
 
-configurations {
-  buildUtils
-}
+configurations { buildUtils }
 
 dependencies {
   // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR
-  providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
-  providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
-  providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
+
+  compile libraries.spring,
+          libraries.logging,
+          "com.google.guava:guava:14.0.1"
 
   compile( "blackboard.platform:bb-spring-webapi:10.1" ) { transitive = false }
 
-  compile "org.springframework:spring-beans:$ext.springVersion",
-          "org.springframework:spring-context:$ext.springVersion",
-          "org.springframework:spring-core:$ext.springVersion",
-          "org.springframework:spring-expression:$ext.springVersion",
-          "org.springframework:spring-web:$ext.springVersion",
-          "org.springframework:spring-webmvc:$ext.springVersion",
-          "org.springframework:spring-context-support:$ext.springVersion"
-
   testCompile "junit:junit:4.11",
               "org.mockito:mockito-core:1.9.5",
-              "org.springframework:spring-test:$ext.springVersion"
-
-  /*
-  compile( "org.hibernate:hibernate-core:$ext.hibernateVersion" ) { transitive = true }
-  compile "org.hibernate:hibernate-entitymanager:$ext.hibernateVersion"
-  */
-  compile "com.google.guava:guava:14.0.1"
-
-  /*
-  runtime "org.javassist:javassist:3.17.1-GA",
-          "dom4j:dom4j:1.6.1"
-  */
+              "org.springframework:spring-test:$springVersion"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
 }
@@ -77,6 +67,6 @@ dependencies {
 
 // Add a task to deploy a B2 using starting block
 task deployB2( dependsOn: "war" ) << {
-      ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
-      ant.b2deploy( localfilepath: project.war.archivePath, host: "devday.blackboard.com", courseorgavailable: 'true', clean: 'true' )
+  ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
+  ant.b2deploy( localfilepath: project.war.archivePath, host: "devday.blackboard.com", courseorgavailable: 'true', clean: 'true' )
 }
