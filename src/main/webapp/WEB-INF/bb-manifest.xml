@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
   <plugin>
 
     <name value="Hayabusa" />
     <handle value="Hayabusa" />
+    <version value="1.0" />
     <description value="Hayabusa for quick commands and searches." />
     <default-locale value="en_US" />
 
-    <version value="1.0" />
     <requires>
       <bbversion value="9.1.100000.0" />
     </requires>
@@ -21,17 +20,14 @@
       <description value="Blackboard Learn" />
     </vendor>
 
-    <schema-dirs>
-      <schema-dir dir-name="hayabusa" />
-    </schema-dirs>
-
     <permissions>
       <permission type="persist" name="*" actions="create,modify,delete,persist" />
       <permission type="attribute" name="user.*" actions="get,set" />
       <permission type="java.util.PropertyPermission" name="*" actions="read,write" />
       <permission type="socket" name="*" actions="connect" />
 
-      <!-- We need these permissions to allow Spring to auto-discover and wire beans together and Hibernate to interact with objects. -->
+      <!-- We need these permissions to allow Spring to auto-discover and wire beans together and Hibernate to interact with 
+        objects -->
       <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
       <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
       <permission type="java.lang.RuntimePermission" name="createClassLoader" />
