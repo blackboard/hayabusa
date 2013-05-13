@@ -29,7 +29,8 @@ project.ext {
       "org.springframework:spring-expression:$springVersion",
       "org.springframework:spring-web:$springVersion",
       "org.springframework:spring-webmvc:$springVersion",
-      "org.springframework:spring-context-support:$springVersion"
+      "org.springframework:spring-context-support:$springVersion",
+      "org.codehaus.jackson:jackson-jaxrs:1.9.2"
     ],
     logging: [
       "ch.qos.logback:logback-classic:1.0.13",
