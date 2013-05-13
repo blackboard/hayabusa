@@ -52,13 +52,13 @@ dependencies {
           "org.springframework:spring-context:$ext.springVersion",
           "org.springframework:spring-core:$ext.springVersion",
           "org.springframework:spring-expression:$ext.springVersion",
-          "org.springframework:spring-test:$ext.springVersion",
           "org.springframework:spring-web:$ext.springVersion",
           "org.springframework:spring-webmvc:$ext.springVersion",
           "org.springframework:spring-context-support:$ext.springVersion"
 
   testCompile "junit:junit:4.11",
-              "org.mockito:mockito-all:1.9.0"
+              "org.mockito:mockito-core:1.9.5",
+              "org.springframework:spring-test:$ext.springVersion"
 
   /*
   compile( "org.hibernate:hibernate-core:$ext.hibernateVersion" ) { transitive = true }
