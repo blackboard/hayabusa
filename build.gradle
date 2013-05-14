@@ -23,14 +23,9 @@ project.ext {
 
   libraries = [
     spring: [
-      "org.springframework:spring-beans:$springVersion",
-      "org.springframework:spring-context:$springVersion",
-      "org.springframework:spring-core:$springVersion",
-      "org.springframework:spring-expression:$springVersion",
-      "org.springframework:spring-web:$springVersion",
+      // TODO find a way to reliably exclude commons-logging - http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
       "org.springframework:spring-webmvc:$springVersion",
-      "org.springframework:spring-context-support:$springVersion",
-      "org.codehaus.jackson:jackson-jaxrs:1.9.2"
+      "org.codehaus.jackson:jackson-jaxrs:1.9.11"
     ],
     logging: [
       "ch.qos.logback:logback-classic:1.0.13",
