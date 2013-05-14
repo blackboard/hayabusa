@@ -17,17 +17,18 @@ package blackboard.plugin.hayabusa.provider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import blackboard.data.navigation.NavigationItem;
+import blackboard.data.navigation.NavigationItemControl;
 import blackboard.persist.PersistenceException;
 import blackboard.persist.PersistenceRuntimeException;
 import blackboard.persist.navigation.NavigationItemDbLoader;
 import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.command.SimpleCommand;
 
-import java.util.*;
+import java.util.List;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
 
 /**
  * A {@link Provider} for navigation item links.
@@ -37,12 +38,20 @@ import com.google.common.collect.Iterables;
  */
 public class NavigationItemProvider implements Provider
 {
-  private static final Function<NavigationItem, Command> TRANSFORM = new Function<NavigationItem, Command>()
+  private static final Function<NavigationItemControl, Command> COMMAND_TRANSFORM = new Function<NavigationItemControl, Command>()
     {
-      public Command apply( NavigationItem ni )
+      public Command apply( NavigationItemControl nic )
       {
-        checkNotNull( ni );
-        return new SimpleCommand( ni.getLabel(), ni.getHref() );
+        checkNotNull( nic );
+        return new SimpleCommand( nic.getLabel(), nic.getUrl() );
+      }
+    };
+
+  private static final Predicate<NavigationItemControl> PERMISSION_PREDICATE = new Predicate<NavigationItemControl>()
+    {
+      public boolean apply( NavigationItemControl nic )
+      {
+        return nic.getUserHasAccess();
       }
     };
 
@@ -52,8 +61,8 @@ public class NavigationItemProvider implements Provider
     try
     {
       NavigationItemDbLoader loader = NavigationItemDbLoader.Default.getInstance();
-      List<NavigationItem> items = loader.loadByFamily( "admin_main" );
-      return Iterables.transform( items, TRANSFORM );
+      List<NavigationItemControl> items = NavigationItemControl.createList( loader.loadByFamily( "admin_main" ) );
+      return FluentIterable.from( items ).filter( PERMISSION_PREDICATE ).transform( COMMAND_TRANSFORM );
     }
     catch ( PersistenceException e )
     {
