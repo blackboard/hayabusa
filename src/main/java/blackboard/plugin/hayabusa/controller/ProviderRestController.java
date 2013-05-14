@@ -15,15 +15,19 @@
 
 package blackboard.plugin.hayabusa.controller;
 
+import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.provider.Provider;
+import blackboard.plugin.hayabusa.provider.ProviderManager;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Provider REST controller.
@@ -37,11 +41,17 @@ public class ProviderRestController
 {
   static final String PREFIX = "/provider";
 
-  @RequestMapping( value = "data", method = RequestMethod.GET )
+  @RequestMapping( value = "commands", method = RequestMethod.GET )
   @ResponseStatus( value = HttpStatus.OK )
-  public HttpEntity<List<Provider>> getProviderData()
+  public HttpEntity<List<Command>> getCommands()
   {
-    return new HttpEntity<List<Provider>>( Collections.<Provider>emptyList() );
+    List<Provider> providers = new ProviderManager().getProviders();
+    List<Iterable<Command>> commands = Lists.newArrayList();
+    for ( Provider provider : providers )
+    {
+      commands.add( provider.getCommands() );
+    }
+    return new HttpEntity<List<Command>>( Lists.newArrayList( Iterables.concat( commands ) ) );
   }
 
 }

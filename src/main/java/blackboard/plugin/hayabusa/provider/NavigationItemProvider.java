@@ -42,7 +42,7 @@ public class NavigationItemProvider implements Provider
       public Command apply( NavigationItem ni )
       {
         checkNotNull( ni );
-        return new SimpleCommand( ni.getDescription(), ni.getHref() );
+        return new SimpleCommand( ni.getLabel(), ni.getHref() );
       }
     };
 

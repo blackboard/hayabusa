@@ -17,6 +17,8 @@ package blackboard.plugin.hayabusa.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects.ToStringHelper;
+
 /**
  * A simple {@link Command} implementation.
  * 
@@ -44,6 +46,14 @@ public class SimpleCommand implements Command
   public String getUri()
   {
     return _uri;
+  }
+
+  public String toString()
+  {
+    ToStringHelper helper = com.google.common.base.Objects.toStringHelper( this );
+    helper.add( "title", _title );
+    helper.add( "uri", _uri );
+    return helper.toString();
   }
 
 }
