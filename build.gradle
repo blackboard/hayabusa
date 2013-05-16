@@ -25,6 +25,7 @@ project.ext {
     spring: [
       // TODO find a way to reliably exclude commons-logging - http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
       "org.springframework:spring-webmvc:$springVersion",
+      "org.springframework:spring-context-support:$ext.springVersion",
       "org.codehaus.jackson:jackson-jaxrs:1.9.11"
     ],
     logging: [
@@ -41,6 +42,11 @@ repositories {
 
 configurations { buildUtils }
 
+List learnProvided = [
+  "blackboard.platform:bb-platform:$project.learnVersion",
+  "blackboard.platform:bb-taglibs:$project.learnVersion"
+]
+
 dependencies {
   // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR
   providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
@@ -49,6 +55,7 @@ dependencies {
 
   compile libraries.spring,
           libraries.logging,
+          "org.apache.velocity:velocity:1.7",
           "com.google.guava:guava:14.0.1"
 
   compile( "blackboard.platform:bb-spring-webapi:10.1" ) { transitive = false }
@@ -64,5 +71,5 @@ dependencies {
 // Add a task to deploy a B2 using starting block
 task deployB2( dependsOn: "war" ) << {
   ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
-  ant.b2deploy( localfilepath: project.war.archivePath, host: "devday.blackboard.com", courseorgavailable: 'true', clean: 'true' )
+  ant.b2deploy( localfilepath: project.war.archivePath, host: "localhost:8000", courseorgavailable: 'true', clean: 'true' )
 }

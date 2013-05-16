@@ -7,6 +7,7 @@
     <handle value="hayabusa" />
     <version value="1.0" />
     <description value="Hayabusa for quick commands and searches." />
+    <webapp-type value="javaext" />
 
     <vendor>
       <id value="bb" />
@@ -21,6 +22,15 @@
       <bbversion value="9.1.100000.0" />
     </requires>
 
+    <extension-defs>
+      <definition namespace="blackboard.platform">
+        <extension id="hayabusaCommandBarRenderingHook"
+                   point="blackboard.platform.renderingHook"
+                   class="blackboard.plugin.hayabusa.view.CommandBarRenderingHook"
+                   singleton="true" />
+      </definition>
+    </extension-defs>
+    
     <permissions>
       <permission type="persist" name="*" actions="create,modify,delete,persist" />
       <permission type="attribute" name="user.*" actions="get,set" />
@@ -34,7 +44,7 @@
       <permission type="java.lang.RuntimePermission" name="createClassLoader" />
       <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
       <permission type="java.lang.RuntimePermission" name="getProtectionDomain" />
-      <permission type="java.io.FilePermission" name="${java.home}/lib/*" actions="read" />
+      <permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;" actions="read,write,delete,execute" />
     </permissions>
 
   </plugin>

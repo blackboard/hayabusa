@@ -33,6 +33,6 @@
 
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/execute/*</url-pattern>
   </servlet-mapping>
 </web-app>
