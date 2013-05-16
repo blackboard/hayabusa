@@ -19,7 +19,7 @@ package blackboard.plugin.hayabusa.command;
  * @author Danny Thomas
  * @since 1.0
  */
-public interface Command
+public interface Command extends Comparable<Command>
 {
   String getTitle();
 

@@ -56,4 +56,10 @@ public class SimpleCommand implements Command
     return helper.toString();
   }
 
+  @Override
+  public int compareTo( Command o )
+  {
+    return _title.compareTo( o.getTitle() );
+  }
+
 }
