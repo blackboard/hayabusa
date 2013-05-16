@@ -17,10 +17,11 @@ package blackboard.plugin.hayabusa.controller;
 
 import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.provider.Provider;
-import blackboard.plugin.hayabusa.provider.ProviderManager;
+import blackboard.plugin.hayabusa.provider.ProviderService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -39,13 +40,16 @@ import com.google.common.collect.Lists;
 @RequestMapping( ProviderRestController.PREFIX )
 public class ProviderRestController
 {
-  static final String PREFIX = "/provider";
+  protected static final String PREFIX = "/provider";
+
+  @Autowired
+  private ProviderService _providerService;
 
   @RequestMapping( value = "commands", method = RequestMethod.GET )
   @ResponseStatus( value = HttpStatus.OK )
   public HttpEntity<List<Command>> getCommands()
   {
-    List<Provider> providers = new ProviderManager().getProviders();
+    List<Provider> providers = _providerService.getProviders();
     List<Iterable<Command>> commands = Lists.newArrayList();
     for ( Provider provider : providers )
     {
