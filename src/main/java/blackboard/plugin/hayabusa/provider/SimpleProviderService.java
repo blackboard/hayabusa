@@ -31,7 +31,7 @@ import com.google.common.collect.ImmutableList;
  */
 @Service
 @Scope( value = "singleton" )
-public class SimpleProviderService implements ProviderService
+public final class SimpleProviderService implements ProviderService
 {
   @Autowired
   private List<Provider> _providers;

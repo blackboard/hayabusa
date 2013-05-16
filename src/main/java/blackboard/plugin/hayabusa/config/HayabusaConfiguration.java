@@ -31,7 +31,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebMvc
 @ComponentScan( basePackages = "blackboard.plugin.hayabusa" )
-public class HayabusaConfiguration extends WebMvcConfigurerAdapter
+public final class HayabusaConfiguration extends WebMvcConfigurerAdapter
 {
 
   @Bean

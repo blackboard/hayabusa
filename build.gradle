@@ -62,6 +62,8 @@ dependencies {
 
   testCompile "junit:junit:4.11",
               "org.mockito:mockito-core:1.9.5",
+              "com.google.guava:guava-testlib:14.0.1",
+              "com.google.code.findbugs:jsr305:2.0.1",
               "org.springframework:spring-test:$springVersion"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"

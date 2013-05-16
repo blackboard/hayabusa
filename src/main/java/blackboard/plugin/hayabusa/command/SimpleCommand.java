@@ -17,6 +17,9 @@ package blackboard.plugin.hayabusa.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Objects;
 import com.google.common.base.Objects.ToStringHelper;
 
 /**
@@ -25,7 +28,7 @@ import com.google.common.base.Objects.ToStringHelper;
  * @author Danny Thomas
  * @since 1.0
  */
-public class SimpleCommand implements Command
+public final class SimpleCommand implements Command
 {
   private String _title;
   private String _uri;
@@ -54,6 +57,23 @@ public class SimpleCommand implements Command
     helper.add( "title", _title );
     helper.add( "uri", _uri );
     return helper.toString();
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return Objects.hashCode( _title, _uri );
+  }
+
+  @Override
+  public boolean equals( @Nullable Object obj )
+  {
+    if ( obj instanceof SimpleCommand )
+    {
+      SimpleCommand command = (SimpleCommand) obj;
+      return Objects.equal( _title, command._title ) && Objects.equal( _uri, command._uri );
+    }
+    return false;
   }
 
   @Override
