@@ -52,18 +52,18 @@ dependencies {
   providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
+  providedCompile( "org.apache.velocity:velocity:1.7" )
 
   compile libraries.spring,
           libraries.logging,
-          "org.apache.velocity:velocity:1.7",
-          "com.google.guava:guava:14.0.1"
+          "com.google.guava:guava:14.0.1",
+          "com.google.code.findbugs:jsr305:2.0.1"
 
   compile( "blackboard.platform:bb-spring-webapi:10.1" ) { transitive = false }
 
   testCompile "junit:junit:4.11",
               "org.mockito:mockito-core:1.9.5",
               "com.google.guava:guava-testlib:14.0.1",
-              "com.google.code.findbugs:jsr305:2.0.1",
               "org.springframework:spring-test:$springVersion"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
