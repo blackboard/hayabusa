@@ -10,7 +10,7 @@ $( function()
     $( "#keyword" ).autocomplete(
     {
         autoFocus : true,
-        source : data.items,
+        source : data.commands,
         selectFirst : true,
         minLength : 1,
         select : function( event, ui )
