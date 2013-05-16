@@ -24,7 +24,11 @@ public class CommandBarRenderingHook implements RenderingHook
   public static final String HANDLE = "hayabusa";
   public static final String VENDOR = "bb";
 
-  private static final String INPUT_FIELD = "<div id=\"light\" class=\"lightbox_content\"><input id=\"lightbox_input\" type=\"text\" x-webkit-speech /></div>";
+  private static final String DIV_START = "<div id=\"light\" class=\"lightbox_content\">";
+  private static final String DIV_END = "</div>";
+  private static final String FORM_START = "<form name=\"search_form\" id=\"searchForm\" method=\"GET\">";
+  private static final String FORM_END = "</form>";
+  private static final String INPUT_FIELD = "<input id=\"lightbox_input\" type=\"text\" x-webkit-speech autofocus /><button name=\"go\" id=\"go\">GO!</button>";
 
   @Override
   public String getContent()
@@ -41,11 +45,19 @@ public class CommandBarRenderingHook implements RenderingHook
     }
     JspResourceIncludeUtil resourceIncludeUtil = JspResourceIncludeUtil.getThreadInstance();
     resourceIncludeUtil.addCssFile( uriPrefix + "css/hayabusa-main.css" );
+    resourceIncludeUtil.addCssFile( uriPrefix + "css/jquery-ui.css");
     resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap.min.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
-    return INPUT_FIELD;
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-1.9.1.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/main.js");
+    return constructForm();
   }
 
+  private String constructForm() {
+    return DIV_START + FORM_START + INPUT_FIELD + FORM_END + DIV_END;
+  }
+  
   private static String getUriPrefix() throws VirtualSystemException, PersistenceException, UnsetContextException
   {
     PlugIn plugIn = PlugInManagerFactory.getInstance().getPlugIn( VENDOR, HANDLE );

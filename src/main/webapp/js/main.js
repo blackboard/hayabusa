@@ -1,13 +1,15 @@
+jQuery.noConflict();
+
 var matchedJSON =
 {};
 
-$( function()
+jQuery( function()
 {
   // /provider/commands
-  $.getJSON( "/provider/commands", function( data )
+  jQuery.getJSON( "/webapps/bb-hayabusa-BBLEARN/execute/provider/commands", function( data )
   {
-    parse( data.items );
-    $( "#keyword" ).autocomplete(
+    parse( data.commands );
+    jQuery( "#lightbox_input" ).autocomplete(
     {
         autoFocus : true,
         source : data.commands,
@@ -16,7 +18,7 @@ $( function()
         select : function( event, ui )
         {
           matchedJSON = ui.item;
-          $( "#searchForm" ).attr( "action", getUri() );
+          jQuery( "#searchForm" ).attr( "action", getUri() );
         }
     } );
   } )
@@ -30,7 +32,7 @@ function getUri()
 
 function parse( items )
 {
-  $( items ).each( function()
+  jQuery( items ).each( function()
   {
     this.value = this.title;
   } );
