@@ -28,7 +28,7 @@ import com.google.common.base.Objects.ToStringHelper;
  * @author Danny Thomas
  * @since 1.0
  */
-public final class SimpleCommand implements Command
+public class SimpleCommand implements Command
 {
   private String _title;
   private String _uri;
