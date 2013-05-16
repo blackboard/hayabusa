@@ -29,7 +29,7 @@ public class ProviderManager
 {
   public List<Provider> getProviders()
   {
-    return ImmutableList.<Provider> of( new NavigationItemProvider() ).asList();
+    return ImmutableList.<Provider> of( new ModuleItemProvider() ).asList();
   }
 
 }
