@@ -26,6 +26,7 @@ project.ext {
       // TODO find a way to reliably exclude commons-logging - http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
       "org.springframework:spring-webmvc:$springVersion",
       "org.springframework:spring-context-support:$ext.springVersion",
+      "blackboard.platform:bb-spring-webapi:10.1",
       "org.codehaus.jackson:jackson-jaxrs:1.9.11"
     ],
     logging: [
@@ -58,8 +59,6 @@ dependencies {
           libraries.logging,
           "com.google.guava:guava:14.0.1",
           "com.google.code.findbugs:jsr305:2.0.1"
-
-  compile( "blackboard.platform:bb-spring-webapi:10.1" ) { transitive = false }
 
   testCompile "junit:junit:4.11",
               "org.mockito:mockito-core:1.9.5",
