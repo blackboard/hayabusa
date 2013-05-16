@@ -38,7 +38,7 @@ import com.google.common.collect.Lists;
  */
 @Controller
 @RequestMapping( ProviderRestController.PREFIX )
-public final class ProviderRestController
+public class ProviderRestController
 {
   protected static final String PREFIX = "/provider";
 
