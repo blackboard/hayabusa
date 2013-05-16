@@ -19,10 +19,10 @@ import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.provider.Provider;
 import blackboard.plugin.hayabusa.provider.ProviderService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ import com.google.common.collect.Lists;
  */
 @Controller
 @RequestMapping( ProviderRestController.PREFIX )
-public class ProviderRestController
+public final class ProviderRestController
 {
   protected static final String PREFIX = "/provider";
 
@@ -47,7 +47,7 @@ public class ProviderRestController
 
   @RequestMapping( value = "commands", method = RequestMethod.GET )
   @ResponseStatus( value = HttpStatus.OK )
-  public HttpEntity<List<Command>> getCommands()
+  public @ResponseBody CommandResponse getCommands()
   {
     List<Provider> providers = _providerService.getProviders();
     List<Iterable<Command>> commands = Lists.newArrayList();
@@ -55,7 +55,30 @@ public class ProviderRestController
     {
       commands.add( provider.getCommands() );
     }
-    return new HttpEntity<List<Command>>( Lists.newArrayList( Iterables.concat( commands ) ) );
+
+    CommandList commandList = new CommandList();
+    Iterables.addAll( commandList, Iterables.concat( commands ) );
+    return new CommandResponse( commandList );
+  }
+
+  private static class CommandResponse
+  {
+    private final CommandList _commands;
+
+    public CommandResponse( CommandList commands )
+    {
+      _commands = commands;
+    }
+
+    @SuppressWarnings( "unused" )
+    public CommandList getCommands()
+    {
+      return _commands;
+    }
+  }
+
+  @SuppressWarnings( "serial" )
+  private static class CommandList extends ArrayList<Command>{
   }
 
 }
