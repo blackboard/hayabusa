@@ -15,13 +15,9 @@
 
 package blackboard.plugin.hayabusa.config;
 
-<<<<<<< HEAD
-import org.apache.velocity.app.VelocityEngine;
-=======
 import blackboard.plugin.hayabusa.provider.ModuleItemProvider;
 import blackboard.plugin.hayabusa.provider.Provider;
 
->>>>>>> 0709cae60f17638947edbc0e0bc9893a6c42c4e9
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -38,22 +34,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class HayabusaConfiguration extends WebMvcConfigurerAdapter
 {
 
-<<<<<<< HEAD
-  /*
-   * TODO wire the provider list:
-   * http://stackoverflow.com/questions/14892757/inject-a-list-of-beans-using-spring-configuration-annotation
-   */
-  
-  @Bean
-  public VelocityEngine getVelocityEngine() {
-    //org.springframework.ui.velocity.VelocityEngineFactoryBean
-    return new VelocityEngine();
-=======
   @Bean
   public Provider moduleItemProvider()
   {
     return new ModuleItemProvider();
->>>>>>> 0709cae60f17638947edbc0e0bc9893a6c42c4e9
   }
 
 }
