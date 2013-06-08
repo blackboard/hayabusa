@@ -48,6 +48,7 @@ public class SimpleProviderService implements ProviderService
   @Autowired
   private List<Provider> _providers;
 
+  @Override
   public List<Provider> getProviders()
   {
     return ImmutableList.copyOf( _providers );

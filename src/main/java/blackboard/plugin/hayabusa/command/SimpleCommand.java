@@ -63,6 +63,7 @@ public class SimpleCommand implements Command
     return _uri;
   }
 
+  @Override
   public String toString()
   {
     ToStringHelper helper = com.google.common.base.Objects.toStringHelper( this );
