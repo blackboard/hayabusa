@@ -66,13 +66,13 @@ public class CommandBarRenderingHook implements RenderingHook
     }
     catch ( VirtualSystemException | PersistenceException | UnsetContextException e )
     {
-      // TODO can we handle this better?
       e.printStackTrace();
     }
     JspResourceIncludeUtil resourceIncludeUtil = JspResourceIncludeUtil.getThreadInstance();
     resourceIncludeUtil.addCssFile( uriPrefix + "css/hayabusa-main.css" );
     resourceIncludeUtil.addCssFile( uriPrefix + "css/jquery-ui.css" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap.min.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap-global-bind.min.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-1.9.1.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
