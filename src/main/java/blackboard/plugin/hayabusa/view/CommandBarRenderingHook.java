@@ -50,11 +50,11 @@ public class CommandBarRenderingHook implements RenderingHook
   public static final String HANDLE = "hayabusa";
   public static final String VENDOR = "bb";
 
-  private static final String DIV_START = "<div id=\"light\" class=\"lightbox_content\">";
+  private static final String DIV_START = "<div id=\"light\" class=\"lightboxContent\">";
   private static final String DIV_END = "</div>";
-  private static final String FORM_START = "<form name=\"search_form\" id=\"searchForm\" method=\"GET\">";
+  private static final String FORM_START = "<form name=\"searchForm\" id=\"searchForm\" method=\"GET\">";
   private static final String FORM_END = "</form>";
-  private static final String INPUT_FIELD = "<input id=\"lightbox_input\" type=\"text\" x-webkit-speech autofocus /><button name=\"go\" id=\"go\">GO!</button>";
+  private static final String INPUT_FIELD = "<input id=\"lightboxInput\" type=\"text\" x-webkit-speech autofocus /><button id=\"go\"/>";
 
   @Override
   public String getContent()
@@ -76,7 +76,7 @@ public class CommandBarRenderingHook implements RenderingHook
     resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-1.9.1.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/main.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-main.js" );
     return constructForm();
   }
 

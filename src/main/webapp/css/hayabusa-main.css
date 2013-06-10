@@ -1,18 +1,24 @@
-.lightbox_content {
+.lightboxContent {
     display: none;
     position: absolute;
     top: 25%;
     left: 25%;
-    width: 50%;
-    height: 50px;
-    padding: 16px;
-    border: 16px solid orange;
+    width: 600px;
+    padding: 3px;
+    padding-right: 9px;
+    border: 2px solid grey;
     background-color: white;
     z-index:1002;
     overflow: auto;
 }
-#lightbox_input {
+#lightboxInput {
     height: 100%;
     width: 100%;
     font-size: 100%
+}
+#go {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
 }

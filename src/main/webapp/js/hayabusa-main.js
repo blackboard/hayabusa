@@ -1,5 +1,4 @@
 jQuery.noConflict();
-
 var matchedJSON =
 {};
 
@@ -9,7 +8,7 @@ jQuery( function()
   jQuery.getJSON( "/webapps/bb-hayabusa-BBLEARN/execute/provider/commands", function( data )
   {
     parse( data.commands );
-    jQuery( "#lightbox_input" ).autocomplete(
+    jQuery( "#lightboxInput" ).autocomplete(
     {
         autoFocus : true,
         source : data.commands,
