@@ -52,7 +52,7 @@ public class CommandBarRenderingHook implements RenderingHook
 
   private static final String DIV_START = "<div id=\"light\" class=\"lightboxContent\">";
   private static final String DIV_END = "</div>";
-  private static final String FORM_START = "<form name=\"searchForm\" id=\"searchForm\" method=\"GET\">";
+  private static final String FORM_START = "<form name=\"searchForm\" id=\"searchForm\" target=\"content\" method=\"GET\">";
   private static final String FORM_END = "</form>";
   private static final String INPUT_FIELD = "<input id=\"lightboxInput\" type=\"text\" x-webkit-speech autofocus /><button id=\"go\"/>";
 
