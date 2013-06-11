@@ -1,15 +1,15 @@
 Hayabusa
 ========
 
-We all love saving time. Hayabusa B2 gives you a new way to do what you want to do in Learn, QUICKLY!. Hayabusa features:
+We all love saving time. Hayabusa B2 gives you a new way to do what you want to do in Blackboard Learn, QUICKLY!. Hayabusa features:
 * Quickly executable commands via keyboard input
 * Voice recognition for Chrom browsers version 11 and above
 * Keyboard shortcuts
-* Command extensibility
+* Extensibility to make Hayabusa smarter and do more
 
 ## Keyboard Shortcuts
 * 'shift + up': Open command bar
-* 'shirt + down": Close commmand bar
+* 'shirt + down': Close commmand bar
 * 'enter': Execute command
 
 ## Requirements
