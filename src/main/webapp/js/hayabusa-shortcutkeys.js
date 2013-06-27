@@ -9,3 +9,10 @@ Mousetrap.bindGlobal(['shift+down'], function(e) {
   document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
   return false;
 });
+
+//open command bar and trigger voice search
+Mousetrap.bindGlobal(['ctrl+shift+.'], function(e) {
+  document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'
+  return false;
+});
+
