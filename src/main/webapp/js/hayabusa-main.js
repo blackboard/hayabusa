@@ -20,7 +20,7 @@ jQuery( function()
         }
     } ).data( 'ui-Autocomplete' )._renderItem = function( ul, item )
     {
-      return item.title;
+      return jQuery( "<li>" ).append( "<a>" + item.category.name + " - " + item.title + "</a>" ).appendTo( ul );
     }
   } )
 } );
