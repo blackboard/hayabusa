@@ -17,7 +17,7 @@ jQuery( function()
         select : function( event, ui )
         {
           matchedJSON = ui.item;
-          jQuery( "#searchForm" ).attr( "action", getUri() );
+          parent.frames['content'].location.href = getUri();
         }
     } );
   } )
