@@ -19,7 +19,11 @@ jQuery( function()
           matchedJSON = ui.item;
           parent.frames['content'].location.href = getUri();
         }
-    } );
+    } ).data( 'ui-Autocomplete' )._renderItem = function( ul, item )
+    {
+      return jQuery( "<li>" )
+          .append( "<a>" + page.bundle.getString( item.category.name ) + " - " + item.title + "</a>" ).appendTo( ul );
+    };
   } )
 } );
 
@@ -33,6 +37,6 @@ function parse( items )
 {
   jQuery( items ).each( function()
   {
-    this.value = this.category.name + ' - ' + this.title;
+    this.value = this.title;
   } );
 }

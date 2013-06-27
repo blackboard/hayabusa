@@ -36,9 +36,9 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 public enum Category
 {
   COURSE( "command.category.course", "course" ),
-  LANGUAGE_PACK( "command.category.language_pack", "language_pack" ),
-  MY_COURSE( "command.category.my_course", "my_course" ),
-  SYSTEM_ADMIN( "command.category.system_admin", "system_admin" ),
+  LANGUAGE_PACK( "command.category.language.pack", "language_pack" ),
+  MY_COURSE( "command.category.my.course", "my_course" ),
+  SYSTEM_ADMIN( "command.category.system.admin", "system_admin" ),
   THEME( "command.category.theme", "theme" );
 
   private String _name;
