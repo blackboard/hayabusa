@@ -36,4 +36,6 @@ public interface Command extends Comparable<Command>
   String getTitle();
 
   String getUri();
+  
+  Category getCategory();
 }

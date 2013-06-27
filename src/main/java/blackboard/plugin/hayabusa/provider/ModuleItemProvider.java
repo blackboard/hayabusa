@@ -31,8 +31,7 @@ import blackboard.data.navigation.NavigationItemControl;
 import blackboard.persist.PersistenceException;
 import blackboard.persist.PersistenceRuntimeException;
 import blackboard.persist.navigation.NavigationItemDbLoader;
-import blackboard.plugin.hayabusa.command.Command;
-import blackboard.plugin.hayabusa.command.SimpleCommand;
+import blackboard.plugin.hayabusa.command.*;
 import blackboard.portal.data.Module;
 import blackboard.portal.persist.ModuleDbLoader;
 
@@ -77,7 +76,7 @@ public class ModuleItemProvider implements Provider
             continue;
           }
           String title = String.format( "%s: %s", module.getTitle(), nic.getLabel() );
-          commands.add( new SimpleCommand( title, nic.getUrl() ) );
+          commands.add( new SimpleCommand( title, nic.getUrl(), Category.SYSTEM_ADMIN ) );
         }
       }
       return commands;
