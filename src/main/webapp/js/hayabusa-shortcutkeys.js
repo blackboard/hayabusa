@@ -16,3 +16,6 @@ Mousetrap.bindGlobal(['ctrl+shift+.'], function(e) {
   return false;
 });
 
+$("iframe").each(function(i, iframe) {
+  Mousetrap.bindEventsTo(iframe.contentDocument);
+});
