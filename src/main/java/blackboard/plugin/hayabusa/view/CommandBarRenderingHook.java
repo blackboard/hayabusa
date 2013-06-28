@@ -69,14 +69,14 @@ public class CommandBarRenderingHook implements RenderingHook
       e.printStackTrace();
     }
     JspResourceIncludeUtil resourceIncludeUtil = JspResourceIncludeUtil.getThreadInstance();
-    resourceIncludeUtil.addCssFile( uriPrefix + "css/hayabusa-main.css" );
-    resourceIncludeUtil.addCssFile( uriPrefix + "css/jquery-ui.css" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap.min.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap-global-bind.min.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-1.9.1.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
+    resourceIncludeUtil.addCssFile( uriPrefix + "css/jquery-ui.css" );
+    resourceIncludeUtil.addCssFile( uriPrefix + "css/hayabusa-main.css" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap.min.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap-global-bind.min.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-main.js" );
+    resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
     
     PlugIn plugin = PlugInManagerFactory.getInstance().getPlugIn( "bb", "hayabusa" );
     BbResourceBundle bundle = BundleManagerFactory.getInstance().getPluginBundle( plugin.getId() );
