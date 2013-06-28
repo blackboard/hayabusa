@@ -29,16 +29,19 @@ package blackboard.plugin.hayabusa.provider;
 import java.util.List;
 import java.util.Set;
 
+import blackboard.data.navigation.NavigationItem;
 import blackboard.data.navigation.NavigationItemControl;
 import blackboard.persist.PersistenceException;
 import blackboard.persist.PersistenceRuntimeException;
 import blackboard.persist.navigation.NavigationItemDbLoader;
+import blackboard.platform.context.ContextManagerFactory;
 import blackboard.plugin.hayabusa.command.Category;
 import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.command.SimpleCommand;
 import blackboard.portal.data.Module;
 import blackboard.portal.persist.ModuleDbLoader;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
@@ -47,10 +50,10 @@ import com.google.common.collect.Sets;
  * @author ZHAOXIA YANG
  * @since 1.0
  */
-public class SendEmailProvider implements Provider
+public class UserManagerProvider implements Provider
 {
 
-  private static final String INTERNAL_HANDLER = "inst_email";
+  private static final String INTERNAL_HANDLER = "list_users";
 
   @Override
   public Iterable<Command> getCommands()
@@ -59,25 +62,38 @@ public class SendEmailProvider implements Provider
     {
       // TODO wire these dependencies as fields/constructor inject
       NavigationItemDbLoader niLoader = NavigationItemDbLoader.Default.getInstance();
-      // For admin
-      List<NavigationItemControl> nics_admin = NavigationItemControl.createList( niLoader
-          .loadByFamily( INTERNAL_HANDLER ) );
       ModuleDbLoader moduleLoader = ModuleDbLoader.Default.getInstance();
-      Module module = moduleLoader.loadByExtRef( "platform/admin-tools" );
+      Module module = moduleLoader.loadByExtRef( "platform/admin-users" );
 
       NavigationItemControl family = NavigationItemControl.createInstance( niLoader
           .loadByInternalHandle( INTERNAL_HANDLER ) );
 
+      // For admin
+      List<NavigationItemControl> userAdminNics = getUserAdminNics();
       Set<Command> commands = Sets.newTreeSet();
 
-      for ( NavigationItemControl nic : nics_admin )
+      for ( NavigationItemControl nic : userAdminNics )
       {
         if ( !nic.userHasAccess() )
         {
           continue;
         }
         String title = String.format( "%s - %s: %s", module.getTitle(), family.getLabel(), nic.getLabel() );
-        commands.add( new SimpleCommand( title, nic.getUrl(), Category.SYSTEM_ADMIN ) );
+        String url = processUri( nic );
+        commands.add( new SimpleCommand( title, url, Category.SYSTEM_ADMIN ) );
+      }
+
+      List<NavigationItemControl> personalEditNics = getPersonalEditNics();
+
+      for ( NavigationItemControl nic : personalEditNics )
+      {
+        if ( !nic.userHasAccess() )
+        {
+          continue;
+        }
+        String title = String.format( "%s", nic.getLabel() );
+        String uri = processUri( nic );
+        commands.add( new SimpleCommand( title, uri, Category.USER ) );
       }
       return commands;
     }
@@ -85,5 +101,34 @@ public class SendEmailProvider implements Provider
     {
       throw new PersistenceRuntimeException( e );
     }
+  }
+
+  private String processUri( NavigationItemControl nic )
+  {
+    String uri = nic.getUrl();
+    blackboard.platform.context.Context ctx = ContextManagerFactory.getInstance().getContext();
+    uri = uri.replaceAll( "@X@target_user.pk_string@X@", ctx.getUserId().getExternalString() );
+    return uri;
+  }
+
+  private List<NavigationItemControl> getPersonalEditNics() throws PersistenceException
+  {
+    NavigationItemDbLoader niLoader = NavigationItemDbLoader.Default.getInstance();
+    // For Personal Info Edit
+    List<NavigationItem> personalEditNis = Lists.newArrayList( niLoader.loadByInternalHandle( "my_inst_personal_edit" ),
+                                                               niLoader.loadByInternalHandle( "my_inst_personal_change_password" ) );
+    List<NavigationItemControl> personalEditNics = NavigationItemControl.createList( personalEditNis );
+    return personalEditNics;
+  }
+
+  private List<NavigationItemControl> getUserAdminNics() throws PersistenceException
+  {
+    NavigationItemDbLoader niLoader = NavigationItemDbLoader.Default.getInstance();
+    // For admin
+    List<NavigationItem> userAdminNis = Lists.newArrayList( niLoader.loadByInternalHandle( "create_user" ),
+                                                            niLoader.loadByInternalHandle( "batch_create_users" ),
+                                                            niLoader.loadByInternalHandle( "batch_remove_users" ) );
+    List<NavigationItemControl> userAdminNics = NavigationItemControl.createList( userAdminNis );
+    return userAdminNics;
   }
 }

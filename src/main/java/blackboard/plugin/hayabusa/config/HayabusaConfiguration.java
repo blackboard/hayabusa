@@ -36,6 +36,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import blackboard.plugin.hayabusa.provider.ModuleItemProvider;
 import blackboard.plugin.hayabusa.provider.Provider;
 import blackboard.plugin.hayabusa.provider.SendEmailProvider;
+import blackboard.plugin.hayabusa.provider.UserManagerProvider;
 
 /**
  * Spring configuration for the Hayabua project.
@@ -60,5 +61,10 @@ public class HayabusaConfiguration extends WebMvcConfigurerAdapter
   {
     return new SendEmailProvider();
   }
-
+  
+  @Bean
+  public Provider userManagerProvider()
+  {
+    return new UserManagerProvider();
+  }
 }
