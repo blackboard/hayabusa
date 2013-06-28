@@ -78,7 +78,8 @@ public class CommandBarRenderingHook implements RenderingHook
     resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
     resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-main.js" );
     
-    BbResourceBundle bundle = BundleManagerFactory.getInstance().getBundle( "bb-manifest" );
+    PlugIn plugin = PlugInManagerFactory.getInstance().getPlugIn( "bb", "hayabusa" );
+    BbResourceBundle bundle = BundleManagerFactory.getInstance().getPluginBundle( plugin.getId() );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.course" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.language.pack" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.my.course" );
