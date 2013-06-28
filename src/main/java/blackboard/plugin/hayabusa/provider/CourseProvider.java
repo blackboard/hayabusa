@@ -50,13 +50,13 @@ import com.google.common.collect.Sets;
 public class CourseProvider implements Provider
 {
   private static final String ADMIN_COURSE_URL_TEMPLATE = "/webapps/blackboard/execute/courseMain?course_id=%s";
-  private static final String My_COURSE_URL_TEMPLATE = "/webapps/blackboard/execute/launcher?type=Course?id=%s";
+  private static final String My_COURSE_URL_TEMPLATE = "/webapps/blackboard/execute/launcher?type=Course&id=%s";
 
   @Override
   public Iterable<Command> getCommands()
   {
     User currentUser = ContextManagerFactory.getInstance().getContext().getUser();
-    if ( currentUser.getSystemRole().equals( SystemRole.Ident.SystemAdmin ) )
+    if ( currentUser.getSystemRole().getIdentifier().equals( SystemRole.Ident.SystemAdmin.getIdentifier() ) )
     {
       return getAdminCourses();
     }
