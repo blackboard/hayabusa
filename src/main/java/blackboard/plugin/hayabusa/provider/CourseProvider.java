@@ -56,7 +56,7 @@ public class CourseProvider implements Provider
   public Iterable<Command> getCommands()
   {
     User currentUser = ContextManagerFactory.getInstance().getContext().getUser();
-    if ( currentUser.getSystemRole().equals( SystemRole.Ident.AccountAdmin ) )
+    if ( currentUser.getSystemRole().equals( SystemRole.Ident.SystemAdmin ) )
     {
       return getAdminCourses();
     }
