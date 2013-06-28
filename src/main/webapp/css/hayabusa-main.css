@@ -9,7 +9,7 @@
     border: 2px solid grey;
     background-color: white;
     z-index:1002;
-    overflow: auto;
+    overflow: hidden;
 }
 #lightboxInput {
     height: 100%;
