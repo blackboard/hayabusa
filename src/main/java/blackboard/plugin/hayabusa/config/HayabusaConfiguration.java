@@ -27,12 +27,15 @@
 
 package blackboard.plugin.hayabusa.config;
 
-import blackboard.plugin.hayabusa.provider.ModuleItemProvider;
-import blackboard.plugin.hayabusa.provider.Provider;
-
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import blackboard.plugin.hayabusa.provider.ModuleItemProvider;
+import blackboard.plugin.hayabusa.provider.Provider;
+import blackboard.plugin.hayabusa.provider.SendEmailProvider;
 
 /**
  * Spring configuration for the Hayabua project.
@@ -50,6 +53,12 @@ public class HayabusaConfiguration extends WebMvcConfigurerAdapter
   public Provider moduleItemProvider()
   {
     return new ModuleItemProvider();
+  }
+  
+  @Bean
+  public Provider sendEmailProvider()
+  {
+    return new SendEmailProvider();
   }
 
 }
