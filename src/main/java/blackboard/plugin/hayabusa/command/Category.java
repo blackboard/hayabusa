@@ -39,7 +39,8 @@ public enum Category
   LANGUAGE_PACK( "command.category.language.pack", "language_pack" ),
   MY_COURSE( "command.category.my.course", "my_course" ),
   SYSTEM_ADMIN( "command.category.system.admin", "system_admin" ),
-  THEME( "command.category.theme", "theme" );
+  USER( "command.category.user", "personal" );
+  
 
   private String _name;
   private String _icon;

@@ -84,7 +84,7 @@ public class CommandBarRenderingHook implements RenderingHook
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.language.pack" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.my.course" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.system.admin" );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.theme" );
+    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.user" );
     return constructForm();
   }
 
