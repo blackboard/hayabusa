@@ -3,13 +3,13 @@ Hayabusa
 
 We all love saving time. Hayabusa B2 is a productivity tool that gives you a new way to do what you want to do in Blackboard Learn, QUICKLY!. Hayabusa features:
 * Quickly search and execute the following:
-** sys admin pages (admin only)
-** all courses (admin only)
-** my courses
-** themes (admin only) - coming soon
-** personal language packs
-** email
-** password, personal information
+  * Sys admin pages (admin only)
+  * All courses (admin only)
+  * My courses
+  * Themes (admin only) - coming soon
+  * Personal language packs
+  * Email
+  * Password, personal information
 * Voice recognition for Chrom browsers version 11 and above
 * Keyboard shortcuts
 * Extensibility to make Hayabusa smarter and do more
