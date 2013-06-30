@@ -2,7 +2,14 @@ Hayabusa
 ========
 
 We all love saving time. Hayabusa B2 is a productivity tool that gives you a new way to do what you want to do in Blackboard Learn, QUICKLY!. Hayabusa features:
-* Quickly executable commands via keyboard input
+* Quickly search and execute the following:
+** sys admin pages (admin only)
+** all courses (admin only)
+** my courses
+** themes (admin only) - coming soon
+** personal language packs
+** email
+** password, personal information
 * Voice recognition for Chrom browsers version 11 and above
 * Keyboard shortcuts
 * Extensibility to make Hayabusa smarter and do more
@@ -26,7 +33,7 @@ Now that your development environment is set up, building, testing, and deployin
 * clean - Deletes the build directory.
 * deployB2 - Deploy the Building Block into your Learn instance. (e.g. ./gradlew -Dserver=localhost deployB2)
 
-Note: deployB2 requires Starting Block (see below) to be installed on the development server. The provided development servers for the hackathon already has this tool installed.
+Note: deployB2 requires 'Starting Block' B2 to be installed on your development server.
 
 ## Extended B2 Exention Points
 * blackboard.platform.renderingHook
