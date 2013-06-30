@@ -17,7 +17,10 @@ jQuery( function()
         select : function( event, ui )
         {
           matchedJSON = ui.item;
-          parent.frames['content'].location.href = getUri();
+          if(matchedJSON.parameters == null)
+            parent.frames['content'].location.href = getUri();
+          else
+            post_to_url(getUri(), matchedJSON.parameters, "post");
         }
     } ).data( 'ui-Autocomplete' )._renderItem = function( ul, item )
     {
@@ -39,4 +42,27 @@ function parse( items )
   {
     this.value = this.title;
   } );
+}
+
+function post_to_url(path, params, method) {
+  method = method || "post";
+
+  var form = document.createElement("form");
+  form.setAttribute("method", method);
+  form.setAttribute("action", path);
+  form.setAttribute("target", "content");
+
+  for(var key in params) {
+      if(params.hasOwnProperty(key)) {
+          var hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", key);
+          hiddenField.setAttribute("value", params[key]);
+
+          form.appendChild(hiddenField);
+       }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
 }
