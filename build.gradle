@@ -54,7 +54,8 @@ dependencies {
   providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
   providedCompile( "org.apache.velocity:velocity:1.7" )
-
+  providedCompile( "javax.servlet:javax.servlet-api:3.1.0" )
+  
   compile libraries.spring,
           libraries.logging,
           "com.google.guava:guava:14.0.1",

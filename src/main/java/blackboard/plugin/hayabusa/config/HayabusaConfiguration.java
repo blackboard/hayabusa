@@ -62,10 +62,16 @@ public class HayabusaConfiguration extends WebMvcConfigurerAdapter
   {
     return new CourseProvider();
   }
-  
+
   @Bean
   public Provider userManagerProvider()
   {
     return new UserManagerProvider();
+  }
+
+  @Bean
+  public Provider languagePackProvider()
+  {
+    return new LanguagePackProvider();
   }
 }
