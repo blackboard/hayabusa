@@ -25,9 +25,6 @@
  */
 package blackboard.plugin.hayabusa.provider;
 
-import java.util.Set;
-
-import blackboard.base.BbList;
 import blackboard.data.course.Course;
 import blackboard.data.course.Course.ServiceLevel;
 import blackboard.data.user.User;
@@ -40,13 +37,15 @@ import blackboard.plugin.hayabusa.command.*;
 
 import com.google.common.collect.Sets;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * A {@link Provider} for courses
  * 
  * @author Li Guoyu
  * @since 1.0
  */
-@SuppressWarnings( "deprecation" )
 public class CourseProvider implements Provider
 {
   private static final String ADMIN_COURSE_URL_TEMPLATE = "/webapps/blackboard/execute/courseMain?course_id=%s";
@@ -70,7 +69,7 @@ public class CourseProvider implements Provider
   {
     try
     {
-      BbList<Course> courses = CourseDbLoader.Default.getInstance().loadAllByServiceLevel( ServiceLevel.FULL );
+      List<Course> courses = CourseDbLoader.Default.getInstance().loadAllByServiceLevel( ServiceLevel.FULL );
       Set<Command> commands = Sets.newTreeSet();
       for ( Course course : courses )
       {
@@ -91,7 +90,7 @@ public class CourseProvider implements Provider
   {
     try
     {
-      BbList<Course> courses = CourseDbLoader.Default.getInstance().loadByUserId( user.getId() );
+      List<Course> courses = CourseDbLoader.Default.getInstance().loadByUserId( user.getId() );
       Set<Command> commands = Sets.newTreeSet();
       for ( Course course : courses )
       {
