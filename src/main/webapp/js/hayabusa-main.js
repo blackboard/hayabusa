@@ -20,7 +20,7 @@ jQuery( function()
           if(matchedJSON.parameters == null)
             parent.frames['content'].location.href = getUri();
           else
-            post_to_url(getUri(), matchedJSON.parameters, "post");
+            post_to_url(getUri(), matchedJSON.parameters, "post", matchedJSON.enctype);
         }
     } ).data( 'ui-Autocomplete' )._renderItem = function( ul, item )
     {
@@ -44,13 +44,17 @@ function parse( items )
   } );
 }
 
-function post_to_url(path, params, method) {
+function post_to_url(path, params, method, enctype) {
   method = method || "post";
 
   var form = document.createElement("form");
   form.setAttribute("method", method);
   form.setAttribute("action", path);
   form.setAttribute("target", "content");
+  if(enctype != null)
+  {
+	  form.setAttribute("enctype",enctype);
+  }
 
   for(var key in params) {
       if(params.hasOwnProperty(key)) {

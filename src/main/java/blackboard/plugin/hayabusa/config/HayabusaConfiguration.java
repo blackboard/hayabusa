@@ -74,4 +74,12 @@ public class HayabusaConfiguration extends WebMvcConfigurerAdapter
   {
     return new LanguagePackProvider();
   }
+  
+  @Bean
+  public Provider themeProvider()
+  {
+    return new ThemeProvider();
+  }
+  
+  
 }

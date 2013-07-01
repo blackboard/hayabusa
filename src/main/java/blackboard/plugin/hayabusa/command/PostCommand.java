@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 public class PostCommand extends SimpleCommand
 {
   private Map<String, String> _parameters;
+  private String _enctype;
 
   public PostCommand( String title, String uri, Category category, Map<String, String> parameters )
   {
@@ -19,6 +20,12 @@ public class PostCommand extends SimpleCommand
     _parameters = checkNotNull( parameters );
   }
 
+  public PostCommand( String title, String uri, Category category, Map<String, String> parameters, String enctype )
+  {
+    this( title, uri, category,parameters );
+    _enctype = checkNotNull( enctype );
+  }
+  
   public Map<String, String> getParameters()
   {
     return _parameters;
@@ -29,6 +36,16 @@ public class PostCommand extends SimpleCommand
     _parameters = checkNotNull( parameters );
   }
 
+  public String getEnctype()
+  {
+    return _enctype;
+  }
+
+  public void setEnctype( String _enctype )
+  {
+    _enctype = checkNotNull(_enctype);
+  }
+
   @Override
   public boolean equals( @Nullable Object obj )
   {
@@ -37,7 +54,8 @@ public class PostCommand extends SimpleCommand
       PostCommand command = (PostCommand) obj;
       return Objects.equal( getTitle(), command.getTitle() ) && Objects.equal( getUri(), command.getUri() )
              && Objects.equal( getCategory(), command.getCategory() )
-             && Objects.equal( getParameters(), command.getParameters() );
+             && Objects.equal( getParameters(), command.getParameters() )
+             && Objects.equal( getEnctype(), command.getEnctype() );
     }
     return false;
   }
@@ -50,6 +68,7 @@ public class PostCommand extends SimpleCommand
     helper.add( "uri", getUri() );
     helper.add( "category", getCategory() );
     helper.add( "parameters", _parameters );
+    helper.add( "enctype", getEnctype() );
     return helper.toString();
   }
 }

@@ -37,6 +37,7 @@ public class FramesetCommandBarRenderingHook extends CommandBarRenderingHook
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.my.course" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.system.admin" );
     resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.user" );
+    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.theme" );
     return constructForm();
   }
 
