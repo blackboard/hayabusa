@@ -34,6 +34,7 @@ import blackboard.persist.navigation.NavigationItemDbLoader;
 import blackboard.plugin.hayabusa.command.*;
 import blackboard.portal.data.Module;
 import blackboard.portal.persist.ModuleDbLoader;
+import blackboard.portal.view.FramesetUtil;
 
 import java.util.*;
 
@@ -76,7 +77,8 @@ public class ModuleItemProvider implements Provider
             continue;
           }
           String title = String.format( "%s: %s", module.getTitle(), nic.getLabel() );
-          commands.add( new SimpleCommand( title, nic.getUrl(), Category.SYSTEM_ADMIN ) );
+          String url = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.admin, nic.getUrl());
+          commands.add( new SimpleCommand( title, url, Category.SYSTEM_ADMIN ) );
         }
       }
       return commands;

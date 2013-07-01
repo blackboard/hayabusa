@@ -40,6 +40,7 @@ import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.command.SimpleCommand;
 import blackboard.portal.data.Module;
 import blackboard.portal.persist.ModuleDbLoader;
+import blackboard.portal.view.FramesetUtil;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -80,6 +81,7 @@ public class UserManagerProvider implements Provider
         }
         String title = String.format( "%s - %s: %s", module.getTitle(), family.getLabel(), nic.getLabel() );
         String url = processUri( nic );
+        url = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.admin, url);
         commands.add( new SimpleCommand( title, url, Category.SYSTEM_ADMIN ) );
       }
 
@@ -93,7 +95,8 @@ public class UserManagerProvider implements Provider
         }
         String title = String.format( "%s: %s", family.getLabel(), nic.getLabel() );
         String uri = processUri( nic );
-        commands.add( new SimpleCommand( title, uri, Category.USER ) );
+        uri = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.my_institution, uri);
+       commands.add( new SimpleCommand( title, uri, Category.USER ) );
       }
       return commands;
     }
@@ -107,7 +110,7 @@ public class UserManagerProvider implements Provider
   {
     String uri = nic.getUrl();
     blackboard.platform.context.Context ctx = ContextManagerFactory.getInstance().getContext();
-    uri = uri.replaceAll( "@X@target_user.pk_string@X@", ctx.getUserId().getExternalString() );
+    uri = uri.replaceAll( "@X@target_user.pk_string@X@", ctx.getUserId().getExternalString() );    
     return uri;
   }
 

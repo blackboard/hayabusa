@@ -38,6 +38,7 @@ import blackboard.plugin.hayabusa.command.Command;
 import blackboard.plugin.hayabusa.command.SimpleCommand;
 import blackboard.portal.data.Module;
 import blackboard.portal.persist.ModuleDbLoader;
+import blackboard.portal.view.FramesetUtil;
 
 import com.google.common.collect.Sets;
 
@@ -77,7 +78,8 @@ public class SendEmailProvider implements Provider
           continue;
         }
         String title = String.format( "%s - %s: %s", module.getTitle(), family.getLabel(), nic.getLabel() );
-        commands.add( new SimpleCommand( title, nic.getUrl(), Category.SYSTEM_ADMIN ) );
+        String url = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.admin, nic.getUrl());
+        commands.add( new SimpleCommand( title, url, Category.SYSTEM_ADMIN ) );
       }
       return commands;
     }

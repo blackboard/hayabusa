@@ -34,6 +34,7 @@ import blackboard.persist.course.CourseDbLoader;
 import blackboard.platform.context.ContextManagerFactory;
 import blackboard.platform.security.SystemRole;
 import blackboard.plugin.hayabusa.command.*;
+import blackboard.portal.view.FramesetUtil;
 
 import com.google.common.collect.Sets;
 
@@ -74,6 +75,7 @@ public class CourseProvider implements Provider
       for ( Course course : courses )
       {
         String url = String.format( ADMIN_COURSE_URL_TEMPLATE, course.getId().toExternalString() );
+        url = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.courses, url);
         SimpleCommand command = new SimpleCommand( course.getTitle(), url, Category.COURSE );
         commands.add( command );
       }
@@ -95,6 +97,7 @@ public class CourseProvider implements Provider
       for ( Course course : courses )
       {
         String url = String.format( My_COURSE_URL_TEMPLATE, course.getId().toExternalString() );
+        url = FramesetUtil.getTabGroupUrl(blackboard.data.navigation.Tab.TabType.courses, url);
         SimpleCommand command = new SimpleCommand( course.getTitle(), url, Category.COURSE );
         commands.add( command );
       }
