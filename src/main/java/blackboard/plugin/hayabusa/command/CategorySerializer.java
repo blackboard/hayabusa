@@ -25,7 +25,10 @@
  */
 package blackboard.plugin.hayabusa.command;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.IOException;
+
+import javax.annotation.Nullable;
 
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonProcessingException;
@@ -40,9 +43,11 @@ public class CategorySerializer extends JsonSerializer<Category>
 {
 
   @Override
-  public void serialize( Category category, JsonGenerator generator, SerializerProvider provider )
+  public void serialize( Category category, JsonGenerator generator, @Nullable SerializerProvider provider )
     throws IOException, JsonProcessingException
   {
+    checkNotNull( category );
+    checkNotNull( generator );
     generator.writeStartObject();
     generator.writeFieldName( "name" );
     generator.writeString( category.getName() );

@@ -2,9 +2,12 @@ package blackboard.plugin.hayabusa.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Objects.ToStringHelper;
 
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class PostCommand extends SimpleCommand
 {
@@ -23,7 +26,20 @@ public class PostCommand extends SimpleCommand
 
   public void setParameters( Map<String, String> parameters )
   {
-    _parameters = parameters;
+    _parameters = checkNotNull( parameters );
+  }
+
+  @Override
+  public boolean equals( @Nullable Object obj )
+  {
+    if ( obj instanceof PostCommand )
+    {
+      PostCommand command = (PostCommand) obj;
+      return Objects.equal( getTitle(), command.getTitle() ) && Objects.equal( getUri(), command.getUri() )
+             && Objects.equal( getCategory(), command.getCategory() )
+             && Objects.equal( getParameters(), command.getParameters() );
+    }
+    return false;
   }
 
   @Override
