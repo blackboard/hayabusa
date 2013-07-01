@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
   <plugin>
 
@@ -24,27 +25,33 @@
 
     <extension-defs>
       <definition namespace="blackboard.platform">
-        <extension id="hayabusaCommandBarRenderingHook"
-                   point="blackboard.platform.renderingHook"
-                   class="blackboard.plugin.hayabusa.view.CommandBarRenderingHook"
-                   singleton="true" />
+        <extension id="hayabusaFramesetCommandBarRenderingHook" point="blackboard.platform.renderingHook"
+          class="blackboard.plugin.hayabusa.view.FramesetCommandBarRenderingHook"
+          singleton="true" />
+        <extension id="hayabusaTopFrameCommandBarRenderingHook" point="blackboard.platform.renderingHook"
+          class="blackboard.plugin.hayabusa.view.TopFrameCommandBarRenderingHook"
+          singleton="true" />
       </definition>
     </extension-defs>
-    
+
     <permissions>
-      <permission type="persist" name="*" actions="create,modify,delete,persist" />
+      <permission type="persist" name="*"
+        actions="create,modify,delete,persist" />
       <permission type="attribute" name="user.*" actions="get,set" />
-      <permission type="java.util.PropertyPermission" name="*" actions="read,write" />
+      <permission type="java.util.PropertyPermission" name="*"
+        actions="read,write" />
       <permission type="socket" name="*" actions="connect" />
 
-      <!-- We need these permissions to allow Spring to auto-discover and wire beans together and Hibernate to interact with 
-        objects -->
-      <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
+      <!-- We need these permissions to allow Spring to auto-discover and 
+        wire beans together and Hibernate to interact with objects -->
+      <permission type="java.lang.reflect.ReflectPermission"
+        name="suppressAccessChecks" />
       <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
       <permission type="java.lang.RuntimePermission" name="createClassLoader" />
       <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
       <permission type="java.lang.RuntimePermission" name="getProtectionDomain" />
-      <permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;" actions="read,write,delete,execute" />
+      <permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
+        actions="read,write,delete,execute" />
     </permissions>
 
   </plugin>

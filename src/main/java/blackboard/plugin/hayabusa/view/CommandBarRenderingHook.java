@@ -26,19 +26,16 @@
 
 package blackboard.plugin.hayabusa.view;
 
-import org.springframework.stereotype.Component;
-
 import blackboard.persist.PersistenceException;
+import blackboard.persist.PersistenceRuntimeException;
 import blackboard.platform.context.ContextManagerFactory;
 import blackboard.platform.context.UnsetContextException;
-import blackboard.platform.intl.BbResourceBundle;
-import blackboard.platform.intl.BundleManagerFactory;
-import blackboard.platform.plugin.*;
-import blackboard.platform.servlet.JspResourceIncludeUtil;
+import blackboard.platform.plugin.PlugIn;
+import blackboard.platform.plugin.PlugInManagerFactory;
+import blackboard.platform.plugin.PlugInUtil;
 import blackboard.platform.vxi.data.VirtualInstallation;
 import blackboard.platform.vxi.service.VirtualSystemException;
 import blackboard.servlet.renderinghook.RenderingHook;
-import blackboard.servlet.renderinghook.RenderingHookKey;
 
 /**
  * Rendering hook to display Hayabusa command bar in top frame.
@@ -46,63 +43,23 @@ import blackboard.servlet.renderinghook.RenderingHookKey;
  * @author Noriaki Tatsumi
  * @since 1.0
  */
-@Component
-public class CommandBarRenderingHook implements RenderingHook
+public abstract class CommandBarRenderingHook implements RenderingHook
 {
   public static final String HANDLE = "hayabusa";
   public static final String VENDOR = "bb";
 
-  private static final String DIV_START = "<div id=\"light\" class=\"lightboxContent\">";
-  private static final String DIV_END = "</div>";
-  private static final String INPUT_FIELD = "<input id=\"lightboxInput\" type=\"text\" x-webkit-speech autofocus ></input>";
-
-  @Override
-  public String getContent()
+  protected static String getUriPrefix()
   {
-    String uriPrefix = "";
     try
     {
-      uriPrefix = getUriPrefix();
+      PlugIn plugIn = PlugInManagerFactory.getInstance().getPlugIn( VENDOR, HANDLE );
+      VirtualInstallation vi = ContextManagerFactory.getInstance().getContext().getVirtualInstallation();
+      return PlugInUtil.getUriStem( plugIn, vi );
     }
     catch ( VirtualSystemException | PersistenceException | UnsetContextException e )
     {
-      e.printStackTrace();
+      throw new PersistenceRuntimeException( e );
     }
-    JspResourceIncludeUtil resourceIncludeUtil = JspResourceIncludeUtil.getThreadInstance();
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-1.9.1.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/jquery-ui.js" );
-    resourceIncludeUtil.addCssFile( uriPrefix + "css/jquery-ui.css" );
-    resourceIncludeUtil.addCssFile( uriPrefix + "css/hayabusa-main.css" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap.min.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/mousetrap-global-bind.min.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-main.js" );
-    resourceIncludeUtil.addJsFile( uriPrefix + "js/hayabusa-shortcutkeys.js" );
-    
-    PlugIn plugin = PlugInManagerFactory.getInstance().getPlugIn( "bb", "hayabusa" );
-    BbResourceBundle bundle = BundleManagerFactory.getInstance().getPluginBundle( plugin.getId() );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.course" );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.language.pack" );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.my.course" );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.system.admin" );
-    resourceIncludeUtil.addJsBundleMessage( bundle, "command.category.user" );
-    return constructForm();
   }
 
-  private String constructForm()
-  {
-    return DIV_START + INPUT_FIELD + DIV_END;
-  }
-
-  private static String getUriPrefix() throws VirtualSystemException, PersistenceException, UnsetContextException
-  {
-    PlugIn plugIn = PlugInManagerFactory.getInstance().getPlugIn( VENDOR, HANDLE );
-    VirtualInstallation vi = ContextManagerFactory.getInstance().getContext().getVirtualInstallation();
-    return PlugInUtil.getUriStem( plugIn, vi );
-  }
-
-  @Override
-  public String getKey()
-  {
-    return RenderingHookKey.Frameset.getKey();
-  }
 }
