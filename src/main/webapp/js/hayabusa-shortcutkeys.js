@@ -11,7 +11,7 @@ Mousetrap.bindGlobal(['shift+down', 'esc'], function(e) {
 });
 
 //open command bar and trigger voice search
-Mousetrap.bindGlobal(['ctrl+shift+.'], function(e) {
+Mousetrap.bindGlobal(['ctrl+shift+.', 'command+shift+.'], function(e) {
   document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'
   return false;
 });
