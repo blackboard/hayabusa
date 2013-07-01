@@ -136,7 +136,7 @@ public class ThemeProvider implements Provider
 
       params.put( NonceUtil.NONCE_KEY, NonceUtil.create( bbCtxt.getSession(), NONCE_ID, NONCE_CONTEXT ) );
 
-      commands.add( new PostCommand( themeExtRef, URI, Category.Theme, params, "multipart/form-data" ) );
+      commands.add( new PostCommand( themeExtRef, URI, Category.THEME, params, "multipart/form-data" ) );
     }
     return commands;
   }
