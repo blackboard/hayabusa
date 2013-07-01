@@ -26,6 +26,7 @@
 
 package blackboard.plugin.hayabusa.command;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
@@ -47,8 +48,8 @@ public enum Category
 
   private Category( String name, String icon )
   {
-    _name = name;
-    _icon = icon;
+    _name = checkNotNull( name );
+    _icon = checkNotNull( icon );
   }
 
   public String getName()

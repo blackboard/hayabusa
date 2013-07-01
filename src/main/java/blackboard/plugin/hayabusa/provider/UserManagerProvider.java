@@ -91,7 +91,7 @@ public class UserManagerProvider implements Provider
         {
           continue;
         }
-        String title = String.format( "%s", nic.getLabel() );
+        String title = String.format( "%s: %s", family.getLabel(), nic.getLabel() );
         String uri = processUri( nic );
         commands.add( new SimpleCommand( title, uri, Category.USER ) );
       }
