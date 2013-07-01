@@ -6,7 +6,9 @@ Mousetrap.bindGlobal(['shift+up'], function(e) {
 
 //close command bar
 Mousetrap.bindGlobal(['shift+down', 'esc'], function(e) {
-  document.getElementById('light').style.display='none';
+	document.getElementById('lightboxInput').value="";	
+	document.getElementById('light').style.display='none';
+	
   return false;
 });
 
