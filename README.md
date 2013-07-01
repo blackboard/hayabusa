@@ -6,7 +6,7 @@ We all love saving time. Hayabusa B2 is a productivity tool that gives you a new
   * Sys admin pages (admin only)
   * All courses (admin only)
   * My courses
-  * Themes (admin only) - coming soon
+  * Themes (admin only)
   * Personal language packs
   * Email
   * Password, personal information
@@ -14,8 +14,12 @@ We all love saving time. Hayabusa B2 is a productivity tool that gives you a new
 * Keyboard shortcuts
 * Extensibility to make Hayabusa smarter and do more
 
+## Command bar icon
+Look for a magnifying glass right beneath Quick Links on left side of the top navigation.
+
 ## Keyboard Shortcuts
 * 'shift + up' - Open command bar
+* 'ctl+shift+.' (Windows), 'command+shift+.' (Mac) - Trigger voice command prompt
 * 'shirt + down', 'esc' - Close commmand bar
 * 'enter' - Execute command
 
