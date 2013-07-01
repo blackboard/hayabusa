@@ -93,7 +93,7 @@ public class SimpleCommand implements Command
     {
       SimpleCommand command = (SimpleCommand) obj;
       return Objects.equal( _title, command._title ) && Objects.equal( _uri, command._uri )
-             && Objects.equal( _category, command._uri );
+             && Objects.equal( _category, command._category );
     }
     return false;
   }
