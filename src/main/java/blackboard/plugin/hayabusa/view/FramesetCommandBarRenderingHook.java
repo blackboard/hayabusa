@@ -12,6 +12,9 @@ public class FramesetCommandBarRenderingHook extends CommandBarRenderingHook
   private static final String DIV_START = "<div id=\"light\" class=\"lightboxContent\">";
   private static final String DIV_END = "</div>";
   private static final String INPUT_FIELD = "<input id=\"lightboxInput\" type=\"text\" x-webkit-speech autofocus ></input>";
+  private static final String SEARCH_ICON = "<div id=\"hayabusa-search-wrapper\" class=\"hayabusa-search-wrapper\">"
+                                            + "<a id=\"hayabusa-search_link\" class=\"hayabusa-search_link\" href=\"#\" onclick=\"top.document.getElementById('light').style.display='block';return false;\">Search</a>"
+                                            + "</div>";
 
   @Override
   public String getContent()
@@ -39,7 +42,7 @@ public class FramesetCommandBarRenderingHook extends CommandBarRenderingHook
 
   private String constructForm()
   {
-    return DIV_START + INPUT_FIELD + DIV_END;
+    return DIV_START + INPUT_FIELD + DIV_END + SEARCH_ICON;
   }
 
   @Override

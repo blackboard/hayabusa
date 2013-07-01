@@ -1,24 +1,68 @@
 .lightboxContent {
-    display: none;
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 600px;
-    padding: 3px;
-    padding-right: 9px;
-    border: 2px solid grey;
-    background-color: white;
-    z-index:1002;
-    overflow: hidden;
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 600px;
+  padding: 3px;
+  padding-right: 9px;
+  border: 2px solid grey;
+  background-color: white;
+  z-index: 1002;
+  overflow: hidden;
 }
+
 #lightboxInput {
-    height: 100%;
-    width: 100%;
-    font-size: 1.5em
+  height: 100%;
+  width: 100%;
+  font-size: 1.5em
 }
+
 #go {
-	position: absolute;
-	left: -9999px;
-	width: 1px;
-	height: 1px;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+#hayabusa-search-wrapper {
+  position: absolute;
+  top: 89px;
+  right: 100%;
+  margin-right: -20px;
+  font-size: 0.8em;
+  border-left: 0;
+  border-bottom: 0;
+  -moz-border-radius: 0 0 4px 0;
+  -webkit-border-radius: 0 0 4px 0;
+  border-radius: 0 0 4px 0;
+  width: auto;
+  white-space: nowrap;
+  height: 21px;
+  line-height: 20px;
+    background: rgba(0, 0, 0, 0.2);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#26000000, endColorstr=#26000000 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#26000000, endColorstr=#26000000 );
+  display: inline-block;
+}
+
+#hayabusa-search-wrapper:hover {
+  margin-right: auto;
+  right: auto;
+  left: -5px;
+  background: #333;
+  background: rgba(0, 0, 0, 0.6);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#62000000, endColorstr=#62000000 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#62000000, endColorstr=#62000000 );
+}
+
+#hayabusa-search-wrapper a {
+  display: block;
+  height: 21px;
+  line-height: 21px;
+  background-image: url(../images/icon_search.png);
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  padding: 0 21px 0 7px;
+  color: #FAF9F6;
 }
