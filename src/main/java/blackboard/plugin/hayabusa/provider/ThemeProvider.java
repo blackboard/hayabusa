@@ -117,9 +117,14 @@ public class ThemeProvider implements Provider
       params.put( "pageType", "Navigation" );
       params.put( "usesCustomBrand", "true" );
       params.put( "startThemeExtRef", currentTheme.getExtRef() );
-      params.put( "startPaletteExtRef", colorPalette.getExtRef() );
+      String colorExtRef = "";
+      if ( colorPalette != null )
+      {
+        colorExtRef = colorPalette.getExtRef();
+      }
+      params.put( "startPaletteExtRef", colorExtRef );
+      params.put( "color_palette_extRef", colorExtRef );
       params.put( "theme_extRef", themeExtRef );
-      params.put( "color_palette_extRef", colorPalette.getExtRef() );
       params.put( "deleteBrandCss", "false" );
       params.put( "tabStyle", currentTheme.getTabStyle().getAbbrevString() );
       params.put( "tabAlign", currentTheme.getTabAlignment().toString() );
