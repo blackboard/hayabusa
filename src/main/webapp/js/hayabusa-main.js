@@ -40,7 +40,7 @@ function parse( items )
 {
   jQuery( items ).each( function()
   {
-    this.value = this.category.name + " - " + this.title;
+    this.value = page.bundle.getString( this.category.name ) + " - " + this.title;
   } );
 }
 
