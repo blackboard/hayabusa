@@ -10,7 +10,7 @@ We all love saving time. Hayabusa B2 is a productivity tool that gives you a new
   * Personal language packs
   * Email
   * Password, personal information
-* Voice recognition for Chrom browsers version 11 and above
+* Voice recognition for Chrome browsers version 11 and above
 * Keyboard shortcuts
 * Extensibility to make Hayabusa smarter and do more
 
