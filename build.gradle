@@ -25,8 +25,8 @@ project.ext {
   libraries = [
     spring: [
       // TODO find a way to reliably exclude commons-logging - http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
-      'org.springframework:spring-webmvc:$springVersion',
-      'org.springframework:spring-context-support:$ext.springVersion',
+      "org.springframework:spring-webmvc:$springVersion",
+      "org.springframework:spring-context-support:$ext.springVersion",
       'blackboard.platform:bb-spring-webapi:10.1',
       'org.codehaus.jackson:jackson-jaxrs:1.9.11'
     ],
