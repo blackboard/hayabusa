@@ -13,6 +13,8 @@ _eclipse_/
 # intellij
 .idea
 *.iml
+*.ipr
+*.iws
 
 # osx
 .DS_STORE
