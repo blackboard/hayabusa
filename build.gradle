@@ -1,44 +1,45 @@
-apply plugin: "java"
-apply plugin: "war"
-apply plugin: "maven"
-apply plugin: "eclipse"
-apply plugin: "versions"
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'versions'
 
 // define the version for the project when publishing to maven
-group "blackboard.plugin"
-version "1.0-SNAPSHOT"
+group 'blackboard.plugin'
+version '1.0-SNAPSHOT'
 
 buildscript {
   repositories { mavenCentral() }
 
   dependencies { // Add the versions plugin - use dependencyUpdates to detect updates to project dependencies
-    classpath "com.github.ben-manes:gradle-versions-plugin:0.3" }
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.3' }
 }
 
-task wrapper(type: Wrapper) { gradleVersion = "1.6" }
+task wrapper(type: Wrapper) { gradleVersion = '1.6' }
 
 project.ext {
-  learnVersion = "9.1.100401.0"
-  springVersion = "3.2.2.RELEASE"
+  learnVersion = '9.1.100401.0'
+  springVersion = '3.2.2.RELEASE'
 
   libraries = [
     spring: [
       // TODO find a way to reliably exclude commons-logging - http://stackoverflow.com/questions/9547170/in-gradle-how-do-i-declare-common-dependencies-in-a-single-place
-      "org.springframework:spring-webmvc:$springVersion",
-      "org.springframework:spring-context-support:$ext.springVersion",
-      "blackboard.platform:bb-spring-webapi:10.1",
-      "org.codehaus.jackson:jackson-jaxrs:1.9.11"
+      'org.springframework:spring-webmvc:$springVersion',
+      'org.springframework:spring-context-support:$ext.springVersion',
+      'blackboard.platform:bb-spring-webapi:10.1',
+      'org.codehaus.jackson:jackson-jaxrs:1.9.11'
     ],
     logging: [
-      "ch.qos.logback:logback-classic:1.0.13",
-      "org.slf4j:jcl-over-slf4j:1.7.5"
+      'ch.qos.logback:logback-classic:1.0.13',
+      'org.slf4j:jcl-over-slf4j:1.7.5'
     ]
   ]
 }
 
 repositories {
   mavenCentral()
-  maven { url "https://maven.blackboard.com/content/repositories/releases/" }
+  maven { url 'https://maven.blackboard.com/content/repositories/releases/' }
 }
 
 configurations { buildUtils }
@@ -53,26 +54,26 @@ dependencies {
   providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
-  providedCompile( "org.apache.velocity:velocity:1.7" )
-  providedCompile( "javax.servlet:javax.servlet-api:3.1.0" )
-  providedCompile( "net.sourceforge.findbugs:findbugs:1.3.7" )
+  providedCompile( 'org.apache.velocity:velocity:1.7' )
+  providedCompile( 'javax.servlet:javax.servlet-api:3.1.0' )
+  providedCompile( 'net.sourceforge.findbugs:findbugs:1.3.7' )
   
   compile libraries.spring,
           libraries.logging,
-          "com.google.guava:guava:14.0.1",
-          "com.google.code.findbugs:jsr305:2.0.1"
+          'com.google.guava:guava:14.0.1',
+          'com.google.code.findbugs:jsr305:2.0.1'
 
-  testCompile "junit:junit:4.11",
-              "org.mockito:mockito-core:1.9.5",
-              "com.google.guava:guava-testlib:14.0.1",
+  testCompile 'junit:junit:4.11',
+              'org.mockito:mockito-core:1.9.5',
+              'com.google.guava:guava-testlib:14.0.1',
               "org.springframework:spring-test:$springVersion"
 
-  buildUtils "org.oscelot:b2deploy-task:0.1.0"
+  buildUtils 'org.oscelot:b2deploy-task:0.1.0'
 }
 
 
 // Add a task to deploy a B2 using starting block
-task deployB2( dependsOn: "war" ) << {
-  ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
-  ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty("server"), courseorgavailable: 'true', clean: 'true' )
+task deployB2( dependsOn: 'war' ) << {
+  ant.taskdef( name: 'b2deploy', classname: 'org.oscelot.ant.B2DeployTask', classpath: project.configurations.buildUtils.asPath )
+  ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty('server'), courseorgavailable: 'true', clean: 'true' )
 }
