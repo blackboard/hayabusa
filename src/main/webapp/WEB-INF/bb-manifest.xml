@@ -50,6 +50,7 @@
       <permission type="java.lang.RuntimePermission" name="createClassLoader" />
       <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
       <permission type="java.lang.RuntimePermission" name="getProtectionDomain" />
+      <permission type="java.lang.RuntimePermission" name="injectRenderingHook" />
       <permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
         actions="read,write,delete,execute" />
     </permissions>
